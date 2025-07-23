@@ -2,7 +2,10 @@
 // TODO 例 com.github.misosoupTgit.examplemod 変更するのはexamplemodのみでok
 package com.github.misosoupTgit.examplemod;
 
+import com.github.misosoupTgit.examplemod.item.ExampleItems;
+import com.github.misosoupTgit.examplemod.item.ExampleTabs;
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -25,7 +28,11 @@ public class ExampleMod {
     public ExampleMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
+        ExampleItems.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
+
+        ExampleTabs.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -36,6 +43,9 @@ public class ExampleMod {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ExampleItems.EXAMPLE_ITEM);
+        }
     }
 
     @SubscribeEvent
