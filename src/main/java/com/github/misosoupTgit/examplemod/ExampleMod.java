@@ -1,5 +1,5 @@
-// パッケージ名は、githubのドメインを逆順に+mod名で
-// 例 com.github.misosoupTgit.examplemod 変更するのはexamplemodのみでok
+// TODO パッケージ名は、githubのドメインを逆順に+mod名で
+// TODO 例 com.github.misosoupTgit.examplemod 変更するのはexamplemodのみでok
 package com.github.misosoupTgit.examplemod;
 
 import com.mojang.logging.LogUtils;
@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 
 @Mod(ExampleMod.MOD_ID)
 public class ExampleMod {
-    // modidの設定※クラス名も変更 shift+f6で一括変更可能
+    // TODO modidの設定※クラス名も変更 shift+f6で一括変更可能
     public static final String MOD_ID = "examplemod";
 
     private static final Logger LOGGER = LogUtils.getLogger();
