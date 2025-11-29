@@ -20,6 +20,7 @@ public class ExampleTabs {
                     .icon(ExampleItems.EXAMPLE_ITEM.get()::getDefaultInstance)
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ExampleItems.EXAMPLE_ITEM.get());
+                        pOutput.accept(ExampleItems.EXAMPLE_ITEM_EXTEND.get());
                     }))
                     .build());
     public static void register(IEventBus eventBus) {

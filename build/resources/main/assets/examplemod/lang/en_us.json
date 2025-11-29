@@ -1,6 +1,6 @@
 {
-  "item.examplemod.example_item": "example item",
-
-
-  "creativetabs.example_tab": "example tab"
+  "block.examplemod.example_block": "Example Block",
+  "creativetabs.example_tab": "Example Tab",
+  "item.examplemod.example_item": "Example Item",
+  "item.examplemod.example_item_extend": "Example Item Extend"
 }

@@ -14,8 +14,15 @@ public class ExampleItems {
     // レジストリを作成
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExampleMod.MOD_ID);
 
+    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .nutrition(4)
+                    .saturationMod(4)
+                    .build()
+            )
+    ));
     // レジストリにアイテムを追加
-    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new ExampleItem(new ExampleItem.Properties()
+    public static final RegistryObject<Item> EXAMPLE_ITEM_EXTEND = ITEMS.register("example_item_extend", () -> new ExampleItemExtend(new ExampleItemExtend.Properties()
 
             // 耐久値の設定※ここを設定するとスタック数の上限が強制的に1になるため、stacksToは使用不可に
             .durability(50)
@@ -35,7 +42,8 @@ public class ExampleItems {
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationMod(4)
-                    .build())
+                    .build()
+                )
             )
     );
 

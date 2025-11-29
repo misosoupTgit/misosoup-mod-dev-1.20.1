@@ -2,6 +2,7 @@
 // TODO 例 com.github.misosoupTgit.examplemod 変更するのはexamplemodのみでok
 package com.github.misosoupTgit.examplemod;
 
+import com.github.misosoupTgit.examplemod.block.ExampleBlocks;
 import com.github.misosoupTgit.examplemod.item.ExampleItems;
 import com.github.misosoupTgit.examplemod.item.ExampleTabs;
 import com.mojang.logging.LogUtils;
@@ -29,6 +30,8 @@ public class ExampleMod {
         IEventBus modEventBus = context.getModEventBus();
 
         ExampleItems.register(modEventBus);
+
+        ExampleBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
