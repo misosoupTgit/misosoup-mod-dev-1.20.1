@@ -24,9 +24,13 @@ minecraft {
     runs {
         configureEach {
             workingDirectory project.file('run')
-
+            jvmArgs '-Xmx2G'
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+
+            //Mixin関連のModMaven用
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 "${mod_id}" {
@@ -58,10 +62,23 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven {
+        url "https://cursemaven.com"
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    //runtimeOnly 開発環境でのみ動作させるMod 軽量化等
+    //compileOnly  本番環境では基本的に要求されないMod でも、あると互換機能の実行が可能 Apiとか使いたい場合
+
+    //runtimeOnlyとcompileOnlyの併用がオススメ
+    //runtimeOnlyがないと、互換機能のテストがしづらい
+    //もし実行環境にあるなら、特定の互換機能を追加とか。Jadeみたいな
+
+    //完全にそのModが必要な場合、runtimeOnlyとcompileOnlyをくっつけて+aしたような
+    //implementationがオススメ 本番環境でもModを要求
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -79,7 +96,6 @@ tasks.named('processResources', ProcessResources).configure {
     }
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
